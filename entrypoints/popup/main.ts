@@ -7,7 +7,7 @@ const $list = document.querySelector<HTMLOListElement>('#list')!
 const $status = document.querySelector<HTMLParagraphElement>('#status')!
 const $hot = document.querySelector<HTMLButtonElement>('#tab-hot')!
 const $fav = document.querySelector<HTMLButtonElement>('#tab-fav')!
-const $header = document.querySelector<HTMLElement>('header')!
+const $header = document.querySelector<HTMLElement>('#filters')!
 
 let tab: 'hot' | 'fav' = 'hot'
 
@@ -30,10 +30,12 @@ async function renderHot(items: HotRepo[]) {
     .map((r, i) => {
       const lang = r.language ? ` · ${r.language}` : ''
       const desc = r.description ? `<div class="desc">${esc(r.description)}</div>` : ''
-      const starred = favs.includes(r.fullName) ? '★' : '☆'
-      return `<li><button class="fav" data-repo="${esc(r.fullName)}" title="收藏/取消">${starred}</button>` +
-        `<span class="rank">${i + 1}</span><a class="name" href="${r.url}" target="_blank">${esc(r.fullName)}</a>` +
-        `<span class="delta">+${r.starsInWindow}</span>${desc}<div class="desc">${r.totalStars.toLocaleString()}★${lang}</div></li>`
+      const starred = favs.includes(r.fullName) ? 'on' : ''
+      return `<li><button class="fav ${starred}" data-repo="${esc(r.fullName)}" title="收藏/取消">${starred ? '★' : '☆'}</button>` +
+        `<div class="body"><div class="row1"><span class="rank">${i + 1}</span>` +
+        `<a class="name" href="${r.url}" target="_blank">${esc(r.fullName)}</a>` +
+        `<span class="delta">+${r.starsInWindow}</span></div>${desc}` +
+        `<div class="desc">${r.totalStars.toLocaleString()}★${lang}</div></div></li>`
     })
     .join('')
 }
@@ -50,8 +52,10 @@ async function renderFav() {
       const delta = d7 === null ? '采集中' : `+${d7}/7天`
       const starsText = stars === null ? '' : `${stars.toLocaleString()}★ · `
       return `<li><button class="fav" data-repo="${esc(full)}" title="取消收藏">★</button>` +
+        `<div class="body"><div class="row1">` +
         `<a class="name" href="https://github.com/${esc(full)}" target="_blank">${esc(full)}</a>` +
-        `<span class="delta">${delta}</span><div class="desc">${starsText}快照 ${dates.length} 天</div></li>`
+        `<span class="delta">${delta}</span></div>` +
+        `<div class="desc">${starsText}快照 ${dates.length} 天</div></div></li>`
     })
     .join('')
 }

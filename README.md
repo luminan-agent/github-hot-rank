@@ -9,6 +9,7 @@
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
 ![Chrome MV3](https://img.shields.io/badge/Chrome-MV3-4285F4?logo=googlechrome&logoColor=white)
 ![Built with WXT](https://img.shields.io/badge/built%20with-WXT-7C3AED)
+![Version](https://img.shields.io/badge/version-0.1.0-0969da)
 
 </div>
 
@@ -33,6 +34,13 @@ Trending 榜按绝对 star 数排名，老牌大仓永远压在前面。**GitHub
 - **开发期采集工具**：`scripts/` 提供零依赖的每日快照采集与 Δ1 / Δ7 差分，用于本地验证与数据沉淀。增速数据 GitHub 官方已不提供（REST stargazers 时间戳接口 404、GraphQL 无对应字段），只能自建差分。
 
 > ⚠️ logo 候选未定稿：上方图形为候选C「突变尖峰」（盲审两轮后唯一保留候选，评审页见 `brand/review.html`），定稿前不代表最终品牌。
+
+## 版本与发布
+
+- 当前版本：**0.1.0**（Chrome 商店上架候选版）
+- 更新日志：[CHANGELOG.md](CHANGELOG.md)
+- 上架材料（标题 / 简介 / 权限 justification / 隐私政策）：[docs/store-listing.md](docs/store-listing.md)
+- 界面设计规范（tokens 真源）：[DESIGN.md](DESIGN.md)
 
 ## 路线图：API 服务 + 薄客户端
 

@@ -4,36 +4,125 @@
     <meta charset="UTF-8" />
     <title>GitHub Hot Rank</title>
     <style>
-      :root { color-scheme: light dark; }
-      body { font: 13px/1.5 -apple-system, sans-serif; width: 380px; margin: 0; padding: 12px; }
-      header { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
-      select, button { font: inherit; }
-      nav { display: flex; gap: 4px; margin-bottom: 8px; }
-      nav button { border: 1px solid color-mix(in srgb, currentColor 25%, transparent); background: none; border-radius: 6px; padding: 2px 10px; cursor: pointer; }
-      nav button.on { background: #ddf4ff; border-color: #54aeff66; color: #0969da; }
-      ol { list-style: none; margin: 0; padding: 0; }
-      li { padding: 6px 0; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
-      .rank { font-weight: 700; margin-right: 6px; color: #0969da; }
-      .name { font-weight: 600; }
-      .delta { float: right; color: #1a7f37; }
-      .desc { color: gray; margin-top: 2px; }
-      .empty { color: gray; padding: 16px 0; text-align: center; }
-      .fav { float: right; cursor: pointer; background: none; border: none; font-size: 14px; color: inherit; margin-left: 8px; }
+      /* tokens（真源见 DESIGN.md） */
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f8fa; --panel: #ffffff; --border: #d0d7de;
+        --fg: #1f2328; --muted: #59636e;
+        --primary: #0969da; --primary-soft: #ddf4ff;
+        --accent: #1a7f37; --accent-soft: #dafbe1;
+        --radius-ctl: 6px; --radius-card: 10px;
+        --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d1117; --panel: #161b22; --border: #30363d;
+          --fg: #e6edf3; --muted: #8b949e;
+          --primary: #4493f8; --primary-soft: #121d2f;
+          --accent: #3fb950; --accent-soft: #0f2417;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        font: 13px/1.5 -apple-system, "PingFang SC", "Segoe UI", sans-serif;
+        width: 400px; margin: 0; padding: var(--sp-3);
+        background: var(--bg); color: var(--fg);
+      }
+
+      header {
+        display: flex; gap: var(--sp-2); align-items: center;
+        padding-bottom: var(--sp-3);
+      }
+      header svg { width: 22px; height: 22px; flex: none; }
+      header b { font-size: 14px; letter-spacing: -0.2px; }
+      header span { margin-left: auto; font-size: 11px; color: var(--muted); }
+
+      nav {
+        display: flex; gap: var(--sp-1);
+        background: var(--panel); border: 1px solid var(--border);
+        border-radius: var(--radius-ctl); padding: 2px; margin-bottom: var(--sp-2);
+      }
+      nav button {
+        flex: 1; font: inherit; font-weight: 600; font-size: 12px;
+        border: none; background: none; border-radius: 5px;
+        padding: 4px 0; cursor: pointer; color: var(--muted);
+      }
+      nav button.on { background: var(--primary-soft); color: var(--primary); }
+
+      .filters { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-2); }
+      select, input {
+        font: inherit; color: var(--fg);
+        background: var(--panel); border: 1px solid var(--border);
+        border-radius: var(--radius-ctl); padding: 3px 8px;
+      }
+      input { flex: 1; min-width: 0; }
+      input::placeholder { color: var(--muted); }
+
+      ol {
+        list-style: none; margin: 0; padding: 0;
+        background: var(--panel); border: 1px solid var(--border);
+        border-radius: var(--radius-card); overflow: hidden;
+      }
+      li {
+        display: flex; gap: var(--sp-2); align-items: flex-start;
+        padding: var(--sp-2) var(--sp-3);
+      }
+      li + li { border-top: 1px solid var(--border); }
+      .body { flex: 1; min-width: 0; }
+      .row1 { display: flex; align-items: baseline; gap: var(--sp-2); min-width: 0; }
+      .rank {
+        font: 700 15px/1 var(--mono); color: var(--primary);
+        min-width: 22px; text-align: right; flex: none;
+      }
+      .name {
+        flex: 1; min-width: 0;
+        font-weight: 600; color: var(--fg);
+        text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      }
+      .name:hover { color: var(--primary); }
+      .fav {
+        flex: none; cursor: pointer; background: none; border: none;
+        font-size: 14px; color: var(--muted); padding: 0 var(--sp-1);
+      }
+      .fav.on { color: #d4a72c; }
+      .delta {
+        flex: none; margin-left: auto;
+        font: 600 12px/1 var(--mono);
+        color: var(--accent); background: var(--accent-soft);
+        border-radius: 999px; padding: 3px 8px;
+      }
+      .meta { color: var(--muted); font-size: 12px; margin-top: 2px; padding-left: 30px; }
+      .desc {
+        color: var(--muted); font-size: 12px; margin-top: 2px;
+        padding-left: calc(22px + var(--sp-2));
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      }
+      .empty { color: var(--muted); text-align: center; padding: var(--sp-4) var(--sp-3); font-size: 12px; }
     </style>
   </head>
   <body>
+    <header>
+      <svg viewBox="0 0 256 256" role="img" aria-label="GitHub Hot Rank" width="22" height="22">
+        <title>GitHub Hot Rank</title>
+        <path fill="#0969da" d="M136.0,142.0 L165.2,137.3 L140.5,158.7 L151.7,195.7 L120.0,173.6 L88.3,195.7 L99.5,158.7 L68.6,135.3 L104.0,142.0 Z M136.0,142.0 L153.0,113.7 L140.2,103.7 L104.0,142.0 Z"/>
+        <path fill="#1a7f37" d="M143.0,100.1 L196.0,44.0 L155.8,110.1 Z"/>
+      </svg>
+      <b>GitHub Hot Rank</b>
+      <span>按涨幅排新星</span>
+    </header>
     <nav>
       <button id="tab-hot" class="on">热榜</button>
       <button id="tab-fav">收藏</button>
     </nav>
-    <header>
+    <div class="filters" id="filters">
       <select id="since">
         <option value="daily">今日</option>
         <option value="weekly">本周</option>
         <option value="monthly">本月</option>
       </select>
       <input id="lang" placeholder="语言（可空）" size="10" />
-    </header>
+    </div>
     <ol id="list"></ol>
     <p id="status" class="empty">加载中…</p>
     <script type="module" src="./main.ts"></script>
