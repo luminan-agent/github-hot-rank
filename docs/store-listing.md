@@ -60,10 +60,10 @@ storage / alarms / notifications 三个权限只用于本地快照、每日采�
 ## 隐私政策 URL
 
 ```
-https://webkubor.github.io/github-hot-rank/#隐私
+https://hotrank.webkubor.xyz/#隐私
 ```
 
-（自定义域名上线后替换为对应子域名地址。当前版本无账号体系、无遥测，隐私声明与实际行为一致。）
+（自定义域名已上线，GitHub Pages 站点经 `hotrank.webkubor.xyz` 提供；隐私声明与实际行为一致：扩展无账号、无遥测。官网访问量用 Cloudflare Web Analytics 匿名统计，声明同样写在该页「隐私」小节。）
 
 ## What's New（0.1.0 首发版）
 

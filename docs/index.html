@@ -18,6 +18,9 @@
   "url": "https://github.com/webkubor/github-hot-rank"
 }
 </script>
+<!-- Cloudflare Web Analytics（cookieless、匿名统计；不设 cookie、不做跨站追踪） -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b4ed8e13ee0b46d398c458008becb22f"}'></script>
+<!-- End Cloudflare Web Analytics -->
 <style>
   /* tokens（真源见 DESIGN.md） */
   :root {
@@ -211,7 +214,8 @@ node scripts/growth.mjs                   # 差分出 Δ1 / Δ7 增速榜</code>
 <section>
   <div class="wrap">
     <h2>隐私</h2>
-    <p class="privacy">当前版本无账号体系，<b>storage / alarms / notifications</b> 三个权限只用于本地快照、每日采集与突变提醒；网络访问限 <b>github.com</b> 与 <b>api.github.com</b>。路线图：产品形态为 <b>服务端 API + 薄客户端扩展</b>——榜单数据由服务端统一采集差分，扩展只消费榜单。</p>
+    <p class="privacy">扩展本身：当前版本无账号体系，<b>storage / alarms / notifications</b> 三个权限只用于本地快照、每日采集与突变提醒；网络访问限 <b>github.com</b> 与 <b>api.github.com</b>。路线图：产品形态为 <b>服务端 API + 薄客户端扩展</b>——榜单数据由服务端统一采集差分，扩展只消费榜单。</p>
+    <p class="privacy">本官网：访问量用 <b>Cloudflare Web Analytics</b> 统计——不设 cookie、不做跨站追踪、不收集个人身份信息，只记录页面浏览量与来源、地区、浏览器版本等匿名维度。</p>
   </div>
 </section>
 

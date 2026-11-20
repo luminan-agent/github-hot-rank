@@ -38,6 +38,7 @@ Trending 榜按绝对 star 数排名，老牌大仓永远压在前面。**GitHub
 ## 版本与发布
 
 - 当前版本：**0.1.0**（Chrome 商店上架候选版）
+- 官网：https://hotrank.webkubor.xyz （GitHub Pages，自定义域名）
 - 更新日志：[CHANGELOG.md](CHANGELOG.md)
 - 上架材料（标题 / 简介 / 权限 justification / 隐私政策）：[docs/store-listing.md](docs/store-listing.md)
 - 界面设计规范（tokens 真源）：[DESIGN.md](DESIGN.md)
