@@ -7,7 +7,10 @@
       :root { color-scheme: light dark; }
       body { font: 13px/1.5 -apple-system, sans-serif; width: 380px; margin: 0; padding: 12px; }
       header { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
-      select { font: inherit; }
+      select, button { font: inherit; }
+      nav { display: flex; gap: 4px; margin-bottom: 8px; }
+      nav button { border: 1px solid color-mix(in srgb, currentColor 25%, transparent); background: none; border-radius: 6px; padding: 2px 10px; cursor: pointer; }
+      nav button.on { background: #ddf4ff; border-color: #54aeff66; color: #0969da; }
       ol { list-style: none; margin: 0; padding: 0; }
       li { padding: 6px 0; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
       .rank { font-weight: 700; margin-right: 6px; color: #0969da; }
@@ -15,9 +18,14 @@
       .delta { float: right; color: #1a7f37; }
       .desc { color: gray; margin-top: 2px; }
       .empty { color: gray; padding: 16px 0; text-align: center; }
+      .fav { float: right; cursor: pointer; background: none; border: none; font-size: 14px; color: inherit; margin-left: 8px; }
     </style>
   </head>
   <body>
+    <nav>
+      <button id="tab-hot" class="on">热榜</button>
+      <button id="tab-fav">收藏</button>
+    </nav>
     <header>
       <select id="since">
         <option value="daily">今日</option>
