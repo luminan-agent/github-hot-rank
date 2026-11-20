@@ -42,6 +42,7 @@ Trending 榜按绝对 star 数排名，老牌大仓永远压在前面。**GitHub
 - 更新日志：[CHANGELOG.md](CHANGELOG.md)
 - 上架材料（标题 / 简介 / 权限 justification / 隐私政策）：[docs/store-listing.md](docs/store-listing.md)
 - 界面设计规范（tokens 真源）：[DESIGN.md](DESIGN.md)
+- 埋点与数据口径（官网统计 / 扩展遥测边界）：[docs/telemetry.md](docs/telemetry.md)
 
 ## 路线图：API 服务 + 薄客户端
 
