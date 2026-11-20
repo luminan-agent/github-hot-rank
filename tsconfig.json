@@ -1,7 +1,3 @@
 {
-  "extends": "./.wxt/tsconfig.json",
-  "compilerOptions": {
-    "strict": true
-  },
-  "include": [".wxt/tsconfig.json", "entrypoints", "lib"]
+  "extends": "./.wxt/tsconfig.json"
 }
