@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub Hot Rank · 按涨幅排 GitHub 新星</title>
+<meta name="description" content="Trending 榜按绝对 star 数排名，老牌大仓永远压在前面。GitHub Hot Rank 用差分增速重新排榜，新星就是这样被看见的。">
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d;
+    --fg: #e6edf3; --muted: #8b949e;
+    --blue: #0969da; --green: #1a7f37;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font: 16px/1.7 -apple-system, "PingFang SC", "Segoe UI", sans-serif;
+  }
+  a { color: var(--fg); }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  header { padding: 24px 0; border-bottom: 1px solid var(--border); }
+  header .wrap { display: flex; align-items: center; gap: 10px; }
+  header svg { width: 28px; height: 28px; }
+  header b { font-size: 17px; }
+  header span { color: var(--muted); font-size: 13px; }
+
+  .hero { text-align: center; padding: 72px 0 56px; }
+  .hero svg { width: 128px; height: 128px; }
+  .hero h1 { font-size: clamp(28px, 6vw, 44px); margin: 24px 0 12px; letter-spacing: -0.5px; }
+  .hero h1 em { font-style: normal; color: #58a6ff; }
+  .hero p { color: var(--muted); max-width: 560px; margin: 0 auto 32px; font-size: 17px; }
+  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .cta a {
+    padding: 10px 22px; border-radius: 8px; text-decoration: none;
+    font-weight: 600; border: 1px solid var(--border);
+  }
+  .cta .primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .cta .primary:hover { background: #0a76e0; }
+  .cta .ghost:hover { border-color: #58a6ff; }
+  .cta code { font-size: 14px; }
+
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  section h2 { font-size: 26px; margin-bottom: 6px; }
+  section > p { color: var(--muted); margin-bottom: 28px; }
+  .shots { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+  .shots img { width: 250px; height: auto; border: 1px solid var(--border); border-radius: 12px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 16px;
+  }
+  .card b { display: block; margin-bottom: 6px; font-size: 15px; }
+  .card p { color: var(--muted); font-size: 14px; margin: 0; }
+
+  ol.steps { list-style: none; padding: 0; display: grid; gap: 12px; }
+  ol.steps li {
+    display: flex; gap: 14px; align-items: baseline;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px;
+  }
+  ol.steps .n {
+    color: var(--blue); font-weight: 700; font-size: 20px; min-width: 28px;
+  }
+  ol.steps p { margin: 0; color: var(--muted); font-size: 15px; }
+  ol.steps b { color: var(--fg); }
+
+  pre {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 18px; overflow-x: auto; font-size: 13.5px; color: var(--muted);
+  }
+  pre code { color: var(--fg); }
+
+  .privacy { color: var(--muted); font-size: 14px; }
+  .privacy b { color: var(--fg); }
+
+  footer { padding: 28px 0 48px; color: var(--muted); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <svg viewBox="0 0 256 256" role="img" aria-label="GitHub Hot Rank 标志" width="28" height="28">
+      <title>GitHub Hot Rank</title>
+      <path fill="#0969da" d="M136.0,142.0 L165.2,137.3 L140.5,158.7 L151.7,195.7 L120.0,173.6 L88.3,195.7 L99.5,158.7 L68.6,135.3 L104.0,142.0 Z M136.0,142.0 L153.0,113.7 L140.2,103.7 L104.0,142.0 Z"/>
+      <path fill="#1a7f37" d="M143.0,100.1 L196.0,44.0 L155.8,110.1 Z"/>
+    </svg>
+    <b>GitHub Hot Rank</b>
+    <span>按涨幅排新星</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <svg viewBox="0 0 256 256" role="img" aria-label="GitHub Hot Rank 标志" width="128" height="128">
+      <title>GitHub Hot Rank</title>
+      <path fill="#0969da" d="M136.0,142.0 L165.2,137.3 L140.5,158.7 L151.7,195.7 L120.0,173.6 L88.3,195.7 L99.5,158.7 L68.6,135.3 L104.0,142.0 Z M136.0,142.0 L153.0,113.7 L140.2,103.7 L104.0,142.0 Z"/>
+      <path fill="#1a7f37" d="M143.0,100.1 L196.0,44.0 L155.8,110.1 Z"/>
+    </svg>
+    <h1>新星，<em>不该</em>被绝对 star 数埋没</h1>
+    <p>Trending 榜按绝对 star 数排名，老牌大仓永远压在前面。GitHub Hot Rank 用差分增速重新排榜：今日 +60★ 的 2k★ 新仓，比今日 +20★ 的 200k★ 巨头排得更高。</p>
+    <div class="cta">
+      <a class="primary" href="https://github.com/webkubor/github-hot-rank#安装开发者模式">安装 · 开发者模式</a>
+      <a class="ghost" href="https://github.com/webkubor/github-hot-rank">GitHub 仓库 →</a>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>它能做什么</h2>
+    <p>四个功能，一个目标：让涨得快的仓库先被看见。</p>
+    <div class="cards">
+      <div class="card"><b>📈 涨幅排行</b><p>今日 / 本周 / 本月 + 语言过滤，Trending 数据按增速差分重新排序。</p></div>
+      <div class="card"><b>🏷️ 仓库页徽章</b><p>浏览任意 GitHub 仓库时，注入该仓库当前增速名次徽章。</p></div>
+      <div class="card"><b>🔥 突变提醒</b><p>收藏仓库每日快照，涨速突变（Δ1 ≥ 10 且 ≥ 3× 前期日均）时推送通知。</p></div>
+      <div class="card"><b>🛠️ 开发期采集工具</b><p>零依赖脚本每日采集快照、差分 Δ1 / Δ7 增速榜；正式形态的增速数据由服务端 API 提供。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>为什么是差分</h2>
+    <p>增速数据 GitHub 已经不给了——REST stargazers 时间戳接口 404，GraphQL 也没有对应字段。所以榜单建立在自建快照差分上：</p>
+    <ol class="steps">
+      <li><span class="n">1</span><p><b>采集</b> — background 每日 alarm 拉一次 Trending 与收藏仓的 star 数，落成本地快照。</p></li>
+      <li><span class="n">2</span><p><b>差分</b> — Δ1 / Δ7 按最近快照差分计算，7 天跨度超过 8 天按缺失处理，不出假数。</p></li>
+      <li><span class="n">3</span><p><b>排榜</b> — 按 Δ 降序排名，同时检测 Δ1 相对前期日均的突变，触发提醒。</p></li>
+    </ol>
+    <pre><code>node scripts/collect.mjs add owner/repo   # 追踪仓库
+node scripts/collect.mjs                  # 采集今日快照
+node scripts/growth.mjs                   # 差分出 Δ1 / Δ7 增速榜</code></pre>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>界面</h2>
+    <p>真实 popup 渲染截图（注入演示数据），深浅两套主题跟随系统。</p>
+    <div class="shots">
+      <img src="screenshots/popup.png" alt="popup 浅色主题：按增速排名的今日 Trending 榜">
+      <img src="screenshots/popup-dark.png" alt="popup 深色主题截图">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>隐私</h2>
+    <p class="privacy">当前版本无账号体系，<b>storage / alarms / notifications</b> 三个权限只用于本地快照、每日采集与突变提醒；网络访问限 <b>github.com</b> 与 <b>api.github.com</b>。路线图：产品形态为 <b>服务端 API + 薄客户端扩展</b>——榜单数据由服务端统一采集差分，扩展只消费榜单。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>AGPL-3.0 · 由 <a href="https://github.com/webkubor">webkubor</a> 维护</span>
+    <span>logo 为候选稿（<a href="https://github.com/webkubor/github-hot-rank/tree/main/brand">brand/</a>），定稿前不代表最终品牌</span>
+  </div>
+</footer>
+
+</body>
+</html>

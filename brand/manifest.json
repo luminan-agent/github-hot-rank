@@ -1,0 +1,131 @@
+{
+  "projects": [
+    {
+      "id": "ghr-a-delta-star",
+      "name": "github-hot-rank · 候选A Δ星",
+      "sourceFiles": [
+        {
+          "path": "svg/a-delta-star.svg",
+          "label": "候选矢量源；既有色来源：../entrypoints/popup/index.html 13/16 行 #0969da、18 行 #1a7f37（manifest 目录禁止相对逃逸，路径记录于此）"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/webkubor/github-hot-rank",
+          "label": "公开仓库（开源走 GitHub）"
+        }
+      ],
+      "tokens": {
+        "primary": "#0969da",
+        "accent": "#1a7f37",
+        "onLight": "#0969da",
+        "onDark": "#0969da",
+        "background": "transparent"
+      },
+      "tokenSources": {
+        "primary": "项目既有：entrypoints/popup/index.html:13,16（GitHub 蓝，popup 名次与激活色），原值沿用",
+        "accent": "项目既有：entrypoints/popup/index.html:18（涨幅绿 .delta），原值沿用",
+        "onLight": "本次建议：浅底用 primary",
+        "onDark": "本次建议：深浅同版，蓝 #0969da 在 #0D1117 上可辨（已渲染 32px 深底验证）；darkAsset=null",
+        "background": "本次建议：透明画布（logo 契约）"
+      },
+      "rationale": [
+        "本次建议：一个想法——Δ 是产品核心度量（Δ1/Δ7 快照差分），负空间五角星是被排名的货币（star）。换名测试：Δ+star 只属于「按涨幅排 star」的产品；竞品若不做涨幅差分，图形不成立。记忆点：三角负空间里藏的星。",
+        "网格：256 viewBox，三角主体高约 168（占 66%），星孔居中偏下；最小尺寸 24px（星孔仍可辨）。"
+      ],
+      "userDecisions": [],
+      "recommendations": [
+        "推荐作为首选候选（负空间记忆点最强、24px 辨认度最高），待用户定稿",
+        "定稿后再做派生应用图标（128px 扩展图标、favicon），不提前接入 wxt"
+      ],
+      "asset": "svg/a-delta-star.svg",
+      "darkAsset": null,
+      "oldAsset": null,
+      "iconAsset": null,
+      "iconDarkAsset": null
+    },
+    {
+      "id": "ghr-b-nova-trail",
+      "name": "github-hot-rank · 候选B 新星轨迹",
+      "sourceFiles": [
+        {
+          "path": "svg/b-nova-trail.svg",
+          "label": "候选矢量源；既有色来源：../entrypoints/popup/index.html 13/16 行 #0969da、18 行 #1a7f37（manifest 目录禁止相对逃逸，路径记录于此）"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/webkubor/github-hot-rank",
+          "label": "公开仓库"
+        }
+      ],
+      "tokens": {
+        "primary": "#0969da",
+        "accent": "#1a7f37",
+        "onLight": "#0969da",
+        "onDark": "#0969da",
+        "background": "transparent"
+      },
+      "tokenSources": {
+        "primary": "项目既有：entrypoints/popup/index.html:13,16，原值沿用（星尾用同色 0.55/0.3 透明度）",
+        "accent": "项目既有：entrypoints/popup/index.html:18（本候选未用）",
+        "onLight": "本次建议：浅底用 primary",
+        "onDark": "本次建议：深浅同版；星尾低透明度在深底仍可辨（已渲染验证）；darkAsset=null",
+        "background": "本次建议：透明画布"
+      },
+      "rationale": [
+        "本次建议：一个想法——「按涨幅排新星」：主星沿上升弧拖出渐小星尾，新星诞生的轨迹。记忆点：三颗同形渐小星的斜向排列。",
+        "风险自评：星+渐隐尾可能被评成通用「流星/新星」模板，专属性弱于候选A，留作对照。"
+      ],
+      "userDecisions": [],
+      "recommendations": [],
+      "asset": "svg/b-nova-trail.svg",
+      "darkAsset": null,
+      "oldAsset": null,
+      "iconAsset": null,
+      "iconDarkAsset": null
+    },
+    {
+      "id": "ghr-c-mutation-spike",
+      "name": "github-hot-rank · 候选C 突变尖峰",
+      "sourceFiles": [
+        {
+          "path": "svg/c-mutation-spike.svg",
+          "label": "候选矢量源；既有色来源：../entrypoints/popup/index.html 13/16 行 #0969da、18 行 #1a7f37（manifest 目录禁止相对逃逸，路径记录于此）"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/webkubor/github-hot-rank",
+          "label": "公开仓库"
+        }
+      ],
+      "tokens": {
+        "primary": "#0969da",
+        "accent": "#1a7f37",
+        "onLight": "#0969da",
+        "onDark": "#0969da",
+        "background": "transparent"
+      },
+      "tokenSources": {
+        "primary": "项目既有：entrypoints/popup/index.html:13,16，原值沿用",
+        "accent": "项目既有：entrypoints/popup/index.html:18（尖峰突变段绿色，呼应涨幅/突变提醒色）",
+        "onLight": "本次建议：浅底用 primary",
+        "onDark": "本次建议：深浅同版（已渲染验证）；darkAsset=null",
+        "background": "本次建议：透明画布"
+      },
+      "rationale": [
+        "本次建议（v2，按盲审意见重做）：一个想法——涨速突变把星的上尖拉成增速尖峰，尖峰沿自身轴线断开一小段，分离的尖端段以突变提醒绿点亮：被检测到突变的星正在「爆尖」。绿色并入尖峰本体（同轴、平行缘），消除盲审指出的「碎片漂浮」观感。记忆点：不对称星的上尖延长 + 断开的绿色尖端。",
+        "几何（v3，采纳盲审 r2 两条打磨建议）：256 viewBox；星心 (120,152) 外径 54 内径 21.6；尖峰基部 (136,142)/(104,142)，尖端 (196,44)；断口沿轴 45% 处、宽 4.5 单位（r1 为 7，收窄 36% 让 24px 留缝）；上段 (143.0,100.1)-(196,44)-(155.8,110.1) 填 accent 绿；右臂半径收短至 47.5（主轴唯一）。",
+        "评审记录（第一轮）：A 撞 Delta 航空商标（硬伤淘汰）；B 通用剪贴画、24px 崩塌（淘汰）；C v1 的漂浮速度痕被指「碎片漂浮」后重做为 v2。"
+      ],
+      "userDecisions": [],
+      "recommendations": [],
+      "asset": "svg/c-mutation-spike.svg",
+      "darkAsset": null,
+      "oldAsset": null,
+      "iconAsset": null,
+      "iconDarkAsset": null
+    }
+  ]
+}
