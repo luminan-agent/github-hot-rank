@@ -1,0 +1,16 @@
+{
+  "name": "github-hot-rank",
+  "version": "0.1.0",
+  "description": "GitHub 热点项目追踪排行：按涨幅排新星，repo 页注入增速名次",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "wxt": "^0.19.13"
+  }
+}

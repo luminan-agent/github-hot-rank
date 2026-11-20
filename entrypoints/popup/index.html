@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GitHub Hot Rank</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body { font: 13px/1.5 -apple-system, sans-serif; width: 380px; margin: 0; padding: 12px; }
+      header { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+      select { font: inherit; }
+      ol { list-style: none; margin: 0; padding: 0; }
+      li { padding: 6px 0; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+      .rank { font-weight: 700; margin-right: 6px; color: #0969da; }
+      .name { font-weight: 600; }
+      .delta { float: right; color: #1a7f37; }
+      .desc { color: gray; margin-top: 2px; }
+      .empty { color: gray; padding: 16px 0; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <select id="since">
+        <option value="daily">今日</option>
+        <option value="weekly">本周</option>
+        <option value="monthly">本月</option>
+      </select>
+      <input id="lang" placeholder="语言（可空）" size="10" />
+    </header>
+    <ol id="list"></ol>
+    <p id="status" class="empty">加载中…</p>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
