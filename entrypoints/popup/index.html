@@ -9,8 +9,8 @@
         color-scheme: light dark;
         --bg: #f6f8fa; --panel: #ffffff; --border: #d0d7de;
         --fg: #1f2328; --muted: #59636e;
-        --primary: #0969da; --primary-soft: #ddf4ff;
-        --accent: #1a7f37; --accent-soft: #dafbe1;
+        --brand: #f0883e; --brand-ink: #bc4c00; --brand-soft: #fff1e5;
+        --star: #e3b341; --star-ink: #9a6700; --star-soft: #fff8c5;
         --radius-ctl: 6px; --radius-card: 10px;
         --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
         --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -19,8 +19,8 @@
         :root {
           --bg: #0d1117; --panel: #161b22; --border: #30363d;
           --fg: #e6edf3; --muted: #8b949e;
-          --primary: #4493f8; --primary-soft: #121d2f;
-          --accent: #3fb950; --accent-soft: #0f2417;
+          --brand: #fd8c73; --brand-ink: #fd8c73; --brand-soft: #2e1608;
+          --star: #e3b341; --star-ink: #e3b341; --star-soft: #2a2210;
         }
       }
       * { box-sizing: border-box; }
@@ -48,7 +48,7 @@
         border: none; background: none; border-radius: 5px;
         padding: 4px 0; cursor: pointer; color: var(--muted);
       }
-      nav button.on { background: var(--primary-soft); color: var(--primary); }
+      nav button.on { background: var(--brand-soft); color: var(--brand-ink); }
 
       .filters { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-2); }
       select, input {
@@ -72,7 +72,7 @@
       .body { flex: 1; min-width: 0; }
       .row1 { display: flex; align-items: baseline; gap: var(--sp-2); min-width: 0; }
       .rank {
-        font: 700 15px/1 var(--mono); color: var(--primary);
+        font: 700 15px/1 var(--mono); color: var(--brand-ink);
         min-width: 22px; text-align: right; flex: none;
       }
       .name {
@@ -80,16 +80,16 @@
         font-weight: 600; color: var(--fg);
         text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
       }
-      .name:hover { color: var(--primary); }
+      .name:hover { color: var(--brand-ink); }
       .fav {
         flex: none; cursor: pointer; background: none; border: none;
         font-size: 14px; color: var(--muted); padding: 0 var(--sp-1);
       }
-      .fav.on { color: #d4a72c; }
+      .fav.on { color: var(--star); }
       .delta {
         flex: none; margin-left: auto;
         font: 600 12px/1 var(--mono);
-        color: var(--accent); background: var(--accent-soft);
+        color: var(--brand-ink); background: var(--brand-soft);
         border-radius: 999px; padding: 3px 8px;
       }
       .meta { color: var(--muted); font-size: 12px; margin-top: 2px; padding-left: 30px; }
@@ -104,9 +104,9 @@
   <body>
     <header>
       <svg viewBox="0 0 256 256" role="img" aria-label="GitHub Hot Rank" width="22" height="22">
-        <title>GitHub Hot Rank</title>
-        <path fill="#0969da" d="M136.0,142.0 L165.2,137.3 L140.5,158.7 L151.7,195.7 L120.0,173.6 L88.3,195.7 L99.5,158.7 L68.6,135.3 L104.0,142.0 Z M136.0,142.0 L153.0,113.7 L140.2,103.7 L104.0,142.0 Z"/>
-        <path fill="#1a7f37" d="M143.0,100.1 L196.0,44.0 L155.8,110.1 Z"/>
+        <title>GitHub Hot Rank · 焰尖金身（小尺寸）</title>
+        <path fill="#e3b341" d="M128.0,84.0 L148.0,132.5 L200.3,136.5 L160.3,170.5 L172.7,221.5 L128.0,194.0 L83.3,221.5 L95.7,170.5 L55.7,136.5 L108.0,132.5 Z"/>
+        <path fill="#f0883e" d="M 108.0,132.5 L 128.0,84.0 L 148.0,132.5 L 128.0,133.4 Z"/>
       </svg>
       <b>GitHub Hot Rank</b>
       <span>按涨幅排新星</span>

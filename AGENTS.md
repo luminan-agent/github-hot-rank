@@ -9,7 +9,7 @@
 1. 先读根目录 **`DESIGN.md`**——tokens、Do/Don't、决策记录的唯一真源。
 2. 颜色/字阶/间距/圆角只引用 tokens（CSS 变量）；新增 token 先改 DESIGN.md + 决策记录补一行，禁止在组件里写裸 hex 或 px 魔数（1px 边线除外）。
 3. 不引入 DESIGN.md 未声明的风格元素（插画、emoji 横幅、渐变、第三强调色）。
-4. logo 使用 `brand/svg/c-mutation-spike.svg` 的路径（popup 头部与官网页头已内联同一路径）；该文件仍是候选稿，定稿前页面保留候选说明。
+4. logo：大尺寸（≥48px）用 `brand/svg/v7-flame-tip-star.svg`（焰尖金身），小尺寸（16–26px）用 `brand/svg/v7-small-flame-cap.svg`（完整星 + 顶部橙帽）；几何由 `brand/build_marks.py` 生成，路径已内联 popup 头部与官网页头/主视觉。用户定稿前仍是候选稿，页面保留候选说明。
 5. 改完用真实浏览器截图验收（popup 浅/深两主题都要），证据留存到 `docs/screenshots/`。
 
 构建与验收命令：`pnpm install && pnpm dev`（本地加载 `.output/chrome-mv3/`）、`pnpm build`、`npm run zip`（商店包）。

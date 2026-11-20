@@ -80,7 +80,7 @@ https://hotrank.webkubor.xyz/#隐私
 
 - [ ] zip 上传（manifest 版本 0.1.0 与 CHANGELOG 一致）
 - [ ] 截图 1280×800 ×2（浅色 + 深色）
-- [ ] 图标 128px（`public/icon/128.png`，候选C 渲染）
+- [ ] 图标 16/48/128px（`public/icon/`：16px 用 `v7-small-flame-cap`、48/128px 用 `v7-flame-tip-star` 渲染）
 - [ ] 单一用途、权限 justification 逐项粘贴
 - [ ] 隐私政策 URL 可访问
 - [ ] 所有者 Google 账号 + $5 注册费（一次性）——需 owner 操作
