@@ -44,9 +44,33 @@ Trending 榜按绝对 star 数排名，老牌大仓永远压在前面。**GitHub
 - 界面设计规范（tokens 真源）：[DESIGN.md](DESIGN.md)
 - 埋点与数据口径（官网统计 / 扩展遥测边界）：[docs/telemetry.md](docs/telemetry.md)
 
-## 路线图：API 服务 + 薄客户端
+## 架构：API 服务 + 薄客户端
 
-插件市场的产品形态是 **API 服务 + 薄客户端扩展**：服务端持续采集 Trending 与追踪仓 star 快照，差分出增速榜与突变事件；扩展只消费榜单，不再各自采集——每个用户本地攒数据没有冷启动可言。当前版本内置的本地采集在服务上线后转为开发期工具。
+插件市场的产品形态是 **API 服务 + 薄客户端扩展**：服务端持续采集 Trending 与追踪仓 star 快照，差分出增速榜与突变事件；扩展只消费榜单，不再各自采集——每个用户本地攒数据没有冷启动可言。
+
+服务端已实现（`server/`，零外部依赖，Node 22 内置 `node:sqlite`）：
+
+| 文件 | 职责 |
+|---|---|
+| `server/store.mjs` | 快照库：`snapshots`（按天一行 JSON）/ `repos` / `trending` 三表，UPSERT 幂等 |
+| `server/collector.mjs` | 每小时采 Trending HTML + 追踪仓 star，解析后落库 |
+| `server/api.mjs` | `GET /health` `/rankings` `/rankings/trending` `/repos/:owner/:name/growth` `/mutations`，无鉴权只读公开 |
+| `server/index.mjs` | API + 定时采集同进程（单机起步省一个部署单元） |
+
+共享口径（`shared/growth.mjs`）：服务端与扩展共用同一份 Δ1/Δ7 与突变判定纯函数（Δ1 ≥ 10 且 ≥ 3× 前期日均）。口径若各写一份，服务端说「突变」而扩展说「没突变」时无法排查。
+
+跑服务端：
+
+```bash
+node server/index.mjs                # API + 每小时采集（PORT 默认 8787）
+node server/index.mjs --collect-once # 只采一轮（给 cron 用）
+node server/index.mjs --no-collect   # 只起 API
+node --test server/tests/server.test.mjs   # 33 条测试
+```
+
+扩展侧走 API：`lib/api.ts` 的 `API_BASE` 默认 `https://hotrank.webkubor.xyz/api`，可用构建期变量 `VITE_HOT_RANK_API` 覆盖（自测指向本机）。拉不到榜单时回退本地直抓 Trending，并在 popup 显式标注「服务端不可用，当前为本地实时抓取」—— 不让用户误以为是官方榜单。
+
+> 服务端尚未对外上线（域名解析未生效），当前发布版本的榜单仍走本地抓取。
 
 ## 安装（开发者模式）
 
@@ -73,6 +97,8 @@ node scripts/growth.mjs                   # 差分出 Δ1 / Δ7 增速榜
 
 ## 权限说明
 
-`storage`（快照与收藏）、`alarms`（每日采集）、`notifications`（仅突变提醒）；host 限 `github.com` 与 `api.github.com`。无远程服务，数据不出本机。
+`storage`（快照与收藏）、`alarms`（每日采集）、`notifications`（仅突变提醒）；host 限 `github.com`、`api.github.com` 与自家榜单 API 域名（`*.webkubor.xyz`，本地自测另有 `localhost`）。
+
+榜单数据经自家 API 获取（公开只读、无鉴权，数据源是公开 GitHub 榜单，聚合后不涉隐私）；`GITHUB_TOKEN` 只在**服务端**从环境读取，不进扩展、不落盘、不进日志。
 
 License: AGPL-3.0

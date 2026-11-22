@@ -170,7 +170,7 @@
     <h2>为什么是差分</h2>
     <p class="lead">增速数据 GitHub 已经不给了——REST stargazers 时间戳接口 404，GraphQL 也没有对应字段。所以榜单建立在自建快照差分上：</p>
     <ol class="steps">
-      <li><span class="n">1</span><p><b>采集</b> — background 每日 alarm 拉一次 Trending 与收藏仓的 star 数，落成本地快照。</p></li>
+      <li><span class="n">1</span><p><b>采集</b> — 服务端每小时拉一次 Trending 与追踪仓的 star 数，落快照库；扩展只消费 API，不各自采集。</p></li>
       <li><span class="n">2</span><p><b>差分</b> — Δ1 / Δ7 按最近快照差分计算，7 天跨度超过 8 天按缺失处理，不出假数。</p></li>
       <li><span class="n">3</span><p><b>排榜</b> — 按 Δ 降序排名，同时检测 Δ1 相对前期日均的突变，触发提醒。</p></li>
     </ol>
@@ -214,7 +214,7 @@ node scripts/growth.mjs                   # 差分出 Δ1 / Δ7 增速榜</code>
 <section>
   <div class="wrap">
     <h2>隐私</h2>
-    <p class="privacy">扩展本身：当前版本无账号体系，<b>storage / alarms / notifications</b> 三个权限只用于本地快照、每日采集与突变提醒；网络访问限 <b>github.com</b> 与 <b>api.github.com</b>。路线图：产品形态为 <b>服务端 API + 薄客户端扩展</b>——榜单数据由服务端统一采集差分，扩展只消费榜单。</p>
+    <p class="privacy">扩展本身：当前版本无账号体系，<b>storage / alarms / notifications</b> 三个权限只用于本地快照、每日采集与突变提醒；网络访问限 <b>github.com</b>、<b>api.github.com</b> 与自家榜单 API 域名。榜单数据由服务端统一采集差分，扩展只消费榜单（公开只读、无鉴权，数据源是公开 GitHub 榜单，聚合后不涉隐私）。服务端尚未对外上线，当前发布版本仍走本地抓取。</p>
     <p class="privacy">本官网：访问量用 <b>Cloudflare Web Analytics</b> 统计——不设 cookie、不做跨站追踪、不收集个人身份信息，只记录页面浏览量与来源、地区、浏览器版本等匿名维度。</p>
   </div>
 </section>
