@@ -3,3 +3,8 @@ node_modules/
 dist/
 data/snapshots/
 brand/png/
+
+# 服务端 SQLite 快照库（含生产数据，绝不能进仓）
+data/*.db
+data/*.db-wal
+data/*.db-shm
