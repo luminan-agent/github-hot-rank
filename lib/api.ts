@@ -11,7 +11,11 @@
  */
 
 /** API 基址。生产走自有域名；开发可指向本机。 */
-export const API_BASE = (import.meta.env?.VITE_HOT_RANK_API ?? 'https://hotrank.webkubor.xyz/api').replace(/\/+$/, '')
+// 🔴 API 基址用 api. 子域，不与官网共用根域名：
+// hotrank.webkubor.xyz 是 **GitHub Pages 官网**的自定义域名（README/docs/store-listing.md 都写明），
+// 一个域名不能同时给 Pages 站点和 API 服务 —— 同域会让扩展的 fetch 拿到官网页面 HTML 而不是 JSON。
+// api.hotrank.webkubor.xyz 需在 DNSPod 加 A 记录指向 API 服务器后再上线。
+export const API_BASE = (import.meta.env?.VITE_HOT_RANK_API ?? 'https://api.hotrank.webkubor.xyz/api').replace(/\/+$/, '')
 
 /** 单个请求超时（毫秒）。服务端不该让扩展干等。 */
 const TIMEOUT_MS = 8000

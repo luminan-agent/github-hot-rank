@@ -68,7 +68,7 @@ node server/index.mjs --no-collect   # 只起 API
 node --test server/tests/server.test.mjs   # 33 条测试
 ```
 
-扩展侧走 API：`lib/api.ts` 的 `API_BASE` 默认 `https://hotrank.webkubor.xyz/api`，可用构建期变量 `VITE_HOT_RANK_API` 覆盖（自测指向本机）。拉不到榜单时回退本地直抓 Trending，并在 popup 显式标注「服务端不可用，当前为本地实时抓取」—— 不让用户误以为是官方榜单。
+扩展侧走 API：`lib/api.ts` 的 `API_BASE` 默认 `https://api.hotrank.webkubor.xyz/api`（**api. 子域**，不与官网根域名 `hotrank.webkubor.xyz`（GitHub Pages 官网）冲突 —— 一个域名不能同时给 Pages 站点和 API 服务），可用构建期变量 `VITE_HOT_RANK_API` 覆盖（自测指向本机）。拉不到榜单时回退本地直抓 Trending，并在 popup 显式标注「服务端不可用，当前为本地实时抓取」—— 不让用户误以为是官方榜单。
 
 > 服务端尚未对外上线（域名解析未生效），当前发布版本的榜单仍走本地抓取。
 
